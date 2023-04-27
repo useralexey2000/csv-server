@@ -14,7 +14,7 @@ func ServeRecords(rs domain.RecordService) http.HandlerFunc {
 		if r.Method != http.MethodGet {
 			respond(
 				w, http.StatusMethodNotAllowed,
-				fmt.Errorf("not supported http.metod"))
+				"not supported http.metod")
 			return
 		}
 
@@ -22,14 +22,14 @@ func ServeRecords(rs domain.RecordService) http.HandlerFunc {
 		if err != nil {
 			respond(
 				w, http.StatusBadRequest,
-				fmt.Errorf("no id provided"))
+				"no id provided")
 			return
 		}
 		recs, err := rs.GetRecords(r.Context(), id)
 		if err != nil {
 			respond(
 				w, http.StatusInternalServerError,
-				fmt.Errorf("can't get records"))
+				"can't get records")
 			return
 		}
 		respond(
